@@ -1,0 +1,154 @@
+@import './partials/core/reset';
+@import './partials/core/variables';
+@import './partials/core/mixins';
+
+@import './partials/components/typography';
+@import './partials/components/switch';
+@import './partials/components/buttons';
+@import './partials/components/search-box';
+
+//@import './partials/pages/details';
+
+:root {
+
+  --body-bgc:          #{$body-bgc};           
+  --card-bgc:          #{$card-bgc};       
+  //--details-bgc:       #{$details-bgc};      
+  
+  --text-color:         #{$text-color};  
+  --text-secondary:     #{$text-secondary}; 
+  //--details-link-color: #{$details-link-color}; 
+  --hd-color:           #{$hd-color}; 
+  --placeholder:        #{$placeholder};      
+}
+
+[data-theme="dark"] {
+  --body-bgc:           #{$dark-body-bgc};        
+  --card-bgc:           #{$dark-card-bgc};        
+  //--details-bgc:        #{$dark-details-bgc};     
+       
+  --text-color:         #{$dark-text-color};
+  --text-secondary:     #{$dark-text-secondary};
+  --details-link-color: #{$dark-details-link-color};  
+  --hd-color:           #{$dark-hd-color}; 
+  --placeholder:        #{$dark-placeholder};           
+}
+
+
+body {
+  background-color: var(--body-bgc);
+  
+  .bg-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 40px;
+    background: url(../images/desktop/bg-pattern-header.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 162px;
+
+    @media only screen and (max-width: 780px) {
+      background: url(../images/tablet/bg-pattern-header.svg);
+      background-repeat: no-repeat;
+    }
+    
+    @media only screen and (max-width: 576px) {
+      padding: 0 24px;
+      background: url(../images/mobile/bg-pattern-header.svg);
+      background-repeat: no-repeat;
+      background-size: 100% 136px;
+      
+    } 
+    
+    .page-container {
+      width: 100%;
+      max-width: 1110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+    }
+  }
+
+//------------ ## HEADER ## -------------//
+//-------------------------------------//  
+
+.main-index {
+  width: 100%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.header {
+    width: 100%;
+    height: 120px;
+    @include flex-sp(row);
+    align-items: center;
+  }
+}
+
+//----------- #Message -------------//
+
+.message {
+  text-align: center;
+}
+
+//----------- #Card List -------------//
+
+.cards-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(327px, 1fr));
+  column-gap: 3%;
+  row-gap: 65px;
+  margin-bottom: 42px;
+  
+  @media only screen and (max-width: 780px) {
+    column-gap: 2%;
+    row-gap: 49px;  
+  }
+   
+  
+  .card {
+    position: relative;
+    @include flex-sp(column);
+    height: 228px;
+    border-radius: 6px;
+    background-color: var(--card-bgc);
+    padding: 49px 32px 32px;
+
+    &-icon {
+      position: absolute;
+      background-size: contain; 
+      background-repeat: no-repeat;
+      background-color: $white;
+      background-position: center;
+      top: -25px;
+      width: 50px;
+      height: 50px;
+      border-radius: 15px;
+      border: solid 1px #F2F2F2;
+    }
+    
+    &-content {
+      @include flex-sp(column);
+      height: 95px;
+      
+      a {
+        text-decoration: none;
+        color: var(--hd-color);
+        
+        &:hover {
+          color: var(--text-secondary);
+        } 
+      }
+    }    
+  }
+
+  // 'hidden' tiene que ir después de 'card' para que funcione
+  
+  .hidden {
+    display: none;
+  }
+}

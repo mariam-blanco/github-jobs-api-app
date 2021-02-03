@@ -1,0 +1,8 @@
+@import '../core/mixins';
+
+.btn-primary   { 
+  @include btn-primary()   
+}
+.btn-secondary { 
+  @include btn-secondary() 
+}
