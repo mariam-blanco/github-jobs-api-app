@@ -58,7 +58,7 @@ const showLoadMoreBtn = () => {
 
 const getJobs = async (terms, location, isFullTime) => {
   url = setURL(terms, location, isFullTime);
-
+  console.log(url);
   try {
     const response = await fetch(url);
     jobs = await response.json();
@@ -71,17 +71,16 @@ const getJobs = async (terms, location, isFullTime) => {
 };
 
 const renderCards = () => {
+  if (numPage === 1) {
+    divCardsList.innerHTML = '';
+  }
   let htmlCards = "";
   jobs.forEach((job, index) => {
     const htmlCard = `
       <div class = "card js-card${index > MAX_CARDS_PAGE - 1 ? " hidden" : ""}">
-        <div class="card-icon" style="background-image: url(${
-          job.company_logo
-        })"></div>
+        <div class="card-icon" style="background-image: url(${job.company_logo})"></div>
         <div class="card-content">
-          <p class="text-secondary">${calculateTime(job.created_at)} ago · ${
-      job.type
-    }</p>
+          <p class="text-secondary">${calculateTime(job.created_at)} ago · ${job.type}</p>
           <h3><a href=#>${job.title}</a></h3>
           <p class="text-secondary">${job.company}</p>
         </div>
