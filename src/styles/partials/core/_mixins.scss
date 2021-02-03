@@ -1,12 +1,11 @@
 @mixin button($text-color, $bgc, $bgc-focus) {
-  
   height: 48px;
   border-radius: 5px;
   color: $text-color;
   background-color: $bgc;
-  font-family: 'Kumbh Sans', Arial, Helvetica, sans-serif;
+  font-family: "Kumbh Sans", Arial, Helvetica, sans-serif;
   font-weight: 700;
-  
+
   &:hover {
     background-color: $bgc-focus;
   }
@@ -19,7 +18,11 @@
 
 @mixin btn-secondary($width: 147px) {
   width: $width;
-  @include button($primary-color, rgba($primary-color, 0.10), rgba($primary-color, 0.25));
+  @include button(
+    $primary-color,
+    rgba($primary-color, 0.1),
+    rgba($primary-color, 0.25)
+  );
 }
 
 @mixin icon-sm($bgc) {
@@ -36,8 +39,3 @@
   flex-direction: $direction;
   justify-content: space-between;
 }
-
-
-
-    
-   

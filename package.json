@@ -1,8 +1,8 @@
 {
-  "name": "github-jobs-api",
+  "name": "github-jobs-api-app",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://mariam-blanco.github.io/github-jobs-api",
+  "homepage": "https://github.com/mariam-blanco/github-jobs-api-app",
   "scripts": {
     "start": "./node_modules/.bin/gulp"
   },
@@ -10,18 +10,20 @@
   "author": "mariamblanko@yahoo.es",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.26.13",
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "gulp": "^4.0.2",
-    "gulp-html-tag-include": "^1.0.1"
-  },
-  "dependencies": {
+    "eslint-config-prettier": "^7.2.0",
+    "prettier": "^2.2.1",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.3",
     "gulp-sass": "^4.1.0",
-    "gulp-terser": "^2.0.0"
+    "gulp-terser": "^2.0.0",
+    "gulp-html-tag-include": "^1.0.1"
+  },
+  "dependencies": {
+    "browser-sync": "^2.26.13",
+    "gulp": "^4.0.2"
   }
 }

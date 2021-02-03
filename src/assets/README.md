@@ -28,7 +28,7 @@ Your users should be able to:
 
 ```javascript
 fetch(
-  'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json'
+  "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json"
 )
   .then((res) => res.json())
   .then((data) => console.log(data));

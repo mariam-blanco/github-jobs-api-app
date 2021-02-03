@@ -2,7 +2,7 @@
   width: 112px;
   height: 26px;
   @include flex-sp(row);
-    
+
   .switch {
     position: relative;
     @include flex-sp(row);
@@ -13,14 +13,14 @@
       width: 25px;
       height: 25px;
       opacity: 0;
-      
+
       &:hover + .slider:before {
         background-color: $primary-color-l;
       }
-        
+
       &:checked + .slider:before {
         transform: translateX(22px);
-      } 
+      }
     }
 
     .slider {
@@ -33,9 +33,9 @@
       display: block;
       background-color: $white;
       border-radius: 12px;
-      transition: .4s;
+      transition: 0.4s;
     }
-      
+
     .slider:before {
       position: absolute;
       content: "";
@@ -45,7 +45,7 @@
       bottom: 5px;
       border-radius: 50%;
       background-color: $primary-color;
-      transition: .4s;
-    }  
-  }   
-} 
+      transition: 0.4s;
+    }
+  }
+}
