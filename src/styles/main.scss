@@ -20,6 +20,10 @@
   //--details-link-color: #{$details-link-color};
   --hd-color:             #{$hd-color};
   --placeholder:          #{$placeholder};
+
+--checkbox-bgc:         #{$checkbox-bgc};
+--checkbox-bgc-hover:   #{$checkbox-bgc-hover};
+--checkbox-bgc-checked: #{$checkbox-bgc-checked};
 }
 
 /* prettier-ignore */
@@ -33,6 +37,8 @@
   --details-link-color:   #{$dark-details-link-color};
   --hd-color:             #{$dark-hd-color};
   --placeholder:          #{$dark-placeholder};
+
+  --checkbox-bgc:         #{$dark-checkbox-bgc};
 }
 
 body {

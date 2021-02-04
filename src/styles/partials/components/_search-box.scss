@@ -9,11 +9,18 @@
   @media only screen and (max-width: 576px) {
     margin-bottom: 57px;
   }
+  .location-field, 
+  .button-box .checkbox-wrapper {
+    @media only screen and (max-width: 576px) {
+      display: none;
+    }
+  }  
 
   form {
     @include flex-sp(row);
     align-items: center;
-    background-color: #fff;
+    background-color: var(--card-bgc);
+    border-radius: 6px;
 
     & > div {
       height: 80px;
@@ -42,17 +49,31 @@
     // Añade puntos suspensivos al texto "placeholder"
     overflow: hidden;
     text-overflow: ellipsis;
-
-    &::placeholder {
-      font: 16px/26px "Kumbh Sans", Arial, Helvetica, sans-serif;
-      color: var(--placeholder);
-    }
+    background-color: transparent;
   }
 }
 
 .search-field {
   flex: 1;
   border-right: solid 1px rgba($dark-grey, 0.2);
+  
+  .icon-search {
+    @media only screen and (max-width: 576px) {
+      display: none;
+    }  
+  }
+  
+  .icon-filter {
+    display: none;
+    @media only screen and (max-width: 576px) {
+      display: inline;
+      margin-right: -8px;
+    }
+  }
+  
+  @media only screen and (max-width: 576px) {
+    border-right: 0;
+  }
 }
 
 .location-field {
@@ -68,6 +89,9 @@
 
     @media only screen and (max-width: 900px) {
       width: 80px;
+    }
+    @media only screen and (max-width: 640px) {
+      @include btn-primary(48px);
     }
   }
 }
@@ -87,20 +111,22 @@
       width: 24px;
       height: 24px;
       border-radius: 3px;
-      background-color: $checkbox-bgc;
+      background-color: var(--checkbox-bgc);
     }
 
     & + span.checkmark:hover {
-      background-color: $checkbox-bgc-hover;
+      background-color: var(--checkbox-bgc-hover);
     }
 
     &:checked + span.checkmark {
       background: url(../images/desktop/icon-check.svg) center no-repeat
-        $checkbox-bgc-checked;
+        var(--checkbox-bgc-checked);
     }
   }
 
   .label {
     margin-left: 40px;
   }
+
+  
 }

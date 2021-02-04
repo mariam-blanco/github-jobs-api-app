@@ -70,6 +70,12 @@ const getJobs = async (terms, location, isFullTime) => {
   }
 };
 
+/*
+* renderCards() --> xxx 
+* -----------------------------------------------------------
+* 
+*/
+
 const renderCards = () => {
   if (numPage === 1) {
     divCardsList.innerHTML = '';
@@ -101,6 +107,12 @@ const renderCards = () => {
   }
 };
 
+/*
+* handleSearch() --> xxx 
+* handleLoad()   -->  xxx
+* -----------------------------------------------------------
+*/
+
 const handleSearch = async (event) => {
   // eslint-disable-next-line no-unused-expressions
   event.preventDefault();
@@ -117,6 +129,13 @@ const handleLoad = async () => {
   jobs = await getJobs();
   renderCards();
 };
+
+/*
+* calculateTime() --> 
+* -----------------------------------------------------------
+* Calcula el tiempo transcurrido desde que se publicó la oferta
+* de trabajo.                     
+*/
 
 const calculateTime = (dateCreated) => {
   const createdAtDate = new Date(dateCreated);
@@ -138,6 +157,51 @@ const calculateTime = (dateCreated) => {
   const months = Math.floor(difference / (1000 * 3600 * 24 * 30));
   return `${months}m`;
 };
+
+/*
+* changePlaceholderText() y changeSearchBox() 
+* -----------------------------------------------------------
+*/
+
+const mediaQuery = window.matchMedia('(max-width: 850px)');
+
+const termsInputField = document.querySelector('.js-terms');
+
+const changePlaceholderText = (query) => {
+
+  const typeLabel = document.querySelector('.js-label');
+
+  if (query.matches) {
+    termsInputField.placeholder = 'Filter by title...';
+    typeLabel.innerHTML = 'Full Time';
+
+  } else {
+    termsInputField.placeholder = 'Filter by title, companies, expertise...';
+    typeLabel.innerHTML = 'Full Time Only';
+  }
+}
+
+const mediaQueryMobile = window.matchMedia('(max-width: 640px)');
+const changeSearchBox = (query) => {
+  const submitBtn = document.querySelector('.js-submit-btn');
+
+  if (query.matches) {
+    submitBtn.innerHTML =
+      `
+      <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.112 15.059h-1.088l-.377-.377a8.814 8.814 0 002.15-5.784A8.898 8.898 0 008.898 0 8.898 8.898 0 000 8.898a8.898 8.898 0 008.898 8.899c2.211 0 4.23-.808 5.784-2.143l.377.377v1.081l6.845 6.832 2.04-2.04-6.832-6.845zm-8.214 0A6.16 6.16 0 118.9 2.737a6.16 6.16 0 010 12.322z" fill="#fff" fill-rule="nonzero"/>
+      </svg>
+      `;
+
+  } else {
+    submitBtn.innerHTML = 'Search';
+  }
+}
+changePlaceholderText(mediaQuery);
+mediaQuery.addListener(changePlaceholderText);
+
+changeSearchBox(mediaQueryMobile);
+mediaQueryMobile.addListener(changeSearchBox);
 
 //const loadMoreCards = () => {
 //  jobs = await getJobs();

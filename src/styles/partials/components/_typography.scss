@@ -19,7 +19,8 @@ body {
 h1,
 h2,
 h3,
-h4 {
+h4,
+.label {
   font-weight: 700;
   color: var(--hd-color);
 }
@@ -40,7 +41,15 @@ h4 {
   font-size: 14px;
   line-height: 18px;
 }
-
+.search-field,
+.location-field {
+  input {
+    &::placeholder {
+      font: 16px/26px "Kumbh Sans", Arial, Helvetica, sans-serif;
+      color: var(--placeholder);
+    }
+  }
+}
 .card-content h3 {
   white-space: nowrap;
   overflow: hidden;

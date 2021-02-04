@@ -23,16 +23,16 @@
         <header class="header">
           <div class="logo">
             <a href="#/">
-              <img src="./images/desktop/logo.svg" />
+              <img src="./images/desktop/logo.svg" alt="logo"/>
             </a>
           </div>
           <div class="switch-theme">
-            <span><img src="./images/desktop/icon-sun.svg" /></span>
+            <span><img src="./images/desktop/icon-sun.svg" alt="Ligth mode" /></span>
             <label class="switch">
               <input type="checkbox" />
               <span class="slider"></span>
             </label>
-            <span><img src="./images/desktop/icon-moon.svg" /></span>
+            <span><img src="./images/desktop/icon-moon.svg" alt="Dark mode" /></span>
           </div>
         </header>
 
@@ -40,30 +40,32 @@
           <div class="search-box">
             <form class="js-form">
               <div class="search-field">
-                <img src="./images/desktop/icon-search.svg" />
+                <img class="icon-search" src="./images/desktop/icon-search.svg" alt="Search icon" />
                 <input
                   class="js-terms"
                   name="terms"
                   type="text"
-                  placeholder="Filter by title, companies, expertise…"
+                  placeholder=""
                 />
+                <img class="icon-filter" src="./images/mobile/icon-filter.svg" alt="Filter icon" />
+
               </div>
               <div class="location-field">
-                <img src="./images/desktop/icon-location.svg" />
+                <img src="./images/desktop/icon-location.svg"  alt="Location icon" />
                 <input
                   class="js-location"
                   name="location"
                   type="text"
-                  placeholder="Filter by location…"
+                  placeholder="Filter by location..."
                 />
               </div>
               <div class="button-box">
                 <label class="checkbox-wrapper">
                   <input class="js-fullTime" name="jobType" type="checkbox" />
                   <span class="checkmark"></span>
-                  <span class="label">Full Time Only</span>
+                  <span class="label js-label"></span>
                 </label>
-                <button type="submit">Search</button>
+                <button type="submit" class="js-submit-btn"></button>
               </div>
             </form>
           </div>
