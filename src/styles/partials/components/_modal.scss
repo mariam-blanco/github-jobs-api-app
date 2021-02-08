@@ -3,18 +3,21 @@
   left: 0;
   top: 0;
   width: 100vw;
-  height: 100vh; 
+  height: 100vh;
+  
+  display: flex;
+  justify-content: center; 
+  align-items: center;
   overflow: auto; 
-  background-color: rgba(0,0,0,0.4); //----- CAMBIAR!!!!!!
+  background-color: rgba(0,0,0,0.5); 
   
   @media only screen and (min-width: 576px) { display: none; }
   
   &-container {
-    position: absolute; 
-    height: 216px;
-    top: 225px;
+    position: fixed;
     left: 24px;
     right: 24px;
+    width: auto;
     @include flex-sp(column);
     background-color: var(--card-bgc);
     
