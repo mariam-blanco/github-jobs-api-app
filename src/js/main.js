@@ -237,3 +237,8 @@ document.addEventListener("DOMContentLoaded", handleLoad);
 form.addEventListener('submit', handleSearch);
 toggleSwitch.addEventListener('change', switchTheme);
 btnModalSearch.addEventListener('click', handleModalSearch);
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    hideModal();
+  }
+});
