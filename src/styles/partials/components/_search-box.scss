@@ -44,17 +44,25 @@
     flex: 1;
     border-right: solid 1px rgba($dark-grey, 0.2);
     
-    @media only screen and (max-width: 576px) { border-right: 0; }
-    
-    .icon-search {
-      @media only screen and (max-width: 576px) { display: none; }   
+    @media only screen and (max-width: 576px) { 
+      border-right: 0; 
+
+      .icon-search { display: none; }
+      
+      input { width: 80%; }
     }
-    
+
     .icon-filter {
       display: none;
       
       @media only screen and (max-width: 576px) { display: inline; }     
-    }    
+    } 
+
+    .btn-search-sm {
+      @include btn-primary(48px);
+      
+      @media only screen and (min-width: 576px) { display: none; }    
+    }        
   }
 
   .location, 
@@ -72,17 +80,15 @@
      
     .btn-search {
       @include btn-primary(123px);
+      
   
       @media only screen and (max-width: 900px) { width: 80px; }
-      //@media only screen and (max-width: 640px) {   }
+     
     }
   }
 }
 
-.btn-search-sm {
-  @include btn-primary(48px);
-  @media only screen and (min-width: 576px) { display: none; } 
-}
+
 
 .checkbox-wrapper {
   position: relative;
