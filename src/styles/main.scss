@@ -6,6 +6,7 @@
 @import "./partials/components/switch";
 @import "./partials/components/buttons";
 @import "./partials/components/search-box";
+@import "./partials/components/modal";
 
 //@import './partials/pages/details';
 
@@ -54,7 +55,7 @@ body {
     background-size: 100% 162px;
 
     @media only screen and (max-width: 780px) {
-      background: url(../images/tablet/bg-pattern-header.svg);
+      background: url(../images/tablet/bg-pattern-header.svg);    
       background-repeat: no-repeat;
     }
 
@@ -63,6 +64,11 @@ body {
       background: url(../images/mobile/bg-pattern-header.svg);
       background-repeat: no-repeat;
       background-size: 100% 136px;
+    }
+
+    // to hide modal
+    .hidden {
+      display: none;
     }
 
     .page-container {
@@ -148,11 +154,5 @@ body {
         }
       }
     }
-  }
-
-  // 'hidden' tiene que ir después de 'card' para que funcione
-
-  .hidden {
-    display: none;
   }
 }

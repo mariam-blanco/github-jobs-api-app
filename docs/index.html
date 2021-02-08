@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body>
-    <div class="bg-container">
+    <div class="bg-container js-container">
       <div class="page-container">
         <header class="header">
           <div class="logo">
@@ -39,7 +39,7 @@
         <main class="main-index js-main">
           <div class="search-box">
             <form class="js-form">
-              <div class="search-field">
+              <div class="search-field terms">
                 <img class="icon-search" src="./images/desktop/icon-search.svg" alt="Search icon" />
                 <input
                   class="js-terms"
@@ -48,10 +48,12 @@
                   placeholder=""
                 />
                 <img class="icon-filter" src="./images/mobile/icon-filter.svg" alt="Filter icon" />
-
+                <button class="btn-search-sm js-btn-modal">
+                  <img src="./images/desktop/icon-search.svg"  alt="Search icon" />
+                </button>
               </div>
-              <div class="location-field">
-                <img src="./images/desktop/icon-location.svg"  alt="Location icon" />
+              <div class="search-field location js-search-location">
+                <img src="./images/desktop/icon-location.svg"  alt="Search icon" />
                 <input
                   class="js-location"
                   name="location"
@@ -59,13 +61,15 @@
                   placeholder="Filter by location..."
                 />
               </div>
-              <div class="button-box">
+              <div class="button-box js-button-box">
                 <label class="checkbox-wrapper">
                   <input class="js-fullTime" name="jobType" type="checkbox" />
                   <span class="checkmark"></span>
                   <span class="label js-label"></span>
                 </label>
-                <button type="submit" class="js-submit-btn"></button>
+                <div class="submit-btn">
+                  <button type="submit" class="btn-search js-submit-btn">Search</button>
+                </div> 
               </div>
             </form>
           </div>
@@ -74,6 +78,30 @@
         </main>
 
       </div>
+      <div class="modal hidden js-modal">
+        <div class="modal-container">
+          <div class="search-field location">
+            <img src="./images/desktop/icon-location.svg"  alt="Search icon" />
+            <input
+              class="js-modal-location"
+              name="location"
+              type="text"
+              placeholder="Filter by location..."
+            />
+          </div>
+          <div class="button-box">
+            <label class="checkbox-wrapper">
+              <input class="js-modal-fullTime" name="jobType" type="checkbox" />
+              <span class="checkmark"></span>
+              <span class="label"></span>
+            </label>
+            <div class="submit-btn">
+              <button class="btn-search js-modal-submit-btn">Search</button>
+            </div> 
+          </div>
+        </div>
+      </div>
+
     </div>
     <script src="./js/main.js"></script>
   </body>
