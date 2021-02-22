@@ -21,7 +21,7 @@ This is a Frontend Mentor coding challenge. It consist in two parts:
 - All jobs have to be load in the home page. GitHub Jobs API only let get 50 positions at a time.
 - If the result of a search returns more than 50 positions, a "Load More" button will be shown to render all the data.
 
-![GitHub Api Jobs App Gif](https://github.com/mariam-blanco/create-card-app/blob/master/src/assets/github-api.gif)
+![GitHub Api Jobs App Gif](https://github.com/mariam-blanco/github-jobs-api-app/blob/master/src/assets/github-api.gif)
 
 
 ## Technologies
