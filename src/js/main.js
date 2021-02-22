@@ -1,22 +1,16 @@
 /* eslint-disable no-unused-expressions */
-let jobs = [];
 let url = "";
 let numPage = 1;
 const MAX_CARDS_PAGE = 50;
 
-const form = document.querySelector(".js-form");
 const termsInputField = document.querySelector('.js-terms');
 const divCardsList = document.querySelector(".js-cards-list");
+
+
+// Change to "dark mode" or "light mode"
+// -----------------------------------------------------------
+
 const toggleSwitch = document.querySelector('.switch input[type="checkbox"]');
-
-const modal = document.querySelector('.js-modal');
-const btnOpenModal = document.querySelector('.js-btn-modal');
-const btnModalSearch = document.querySelector('.js-modal-submit-btn');
-
-/*
-* Change to "dark mode" or "light mode"
-* -----------------------------------------------------------
-*/
 
 const switchTheme = (e) => {
   if (e.target.checked) {
@@ -25,6 +19,15 @@ const switchTheme = (e) => {
     document.documentElement.setAttribute("data-theme", "ligth");
   }
 };
+
+toggleSwitch.addEventListener('change', switchTheme);
+
+
+// Modal
+// -----------------------------------------------------------
+
+const modal = document.querySelector('.js-modal');
+const btnOpenModal = document.querySelector('.js-btn-modal');
 
 const showModal = (e) => {
   e.preventDefault();
@@ -35,16 +38,23 @@ const hideModal = () => {
   modal.classList.add('hidden');
 }
 
-/*
-* URL to fetch data 
-* -----------------------------------------------------------
-*/
+btnOpenModal.addEventListener('click', showModal);
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    hideModal();
+  }
+});
+
+
+// URL to fetch data 
+// -----------------------------------------------------------
 
 const setURL = (terms, location, isFullTime) => {
   const corsURL = "https://cors-anywhere.herokuapp.com/";
-  const baseURL = "https://jobs.github.com/positions.json?";
+  const baseURL = "https://jobs.github.com/positions.json";
 
-  url = `${corsURL + baseURL}page=${numPage}`;
+  url = `${corsURL + baseURL}?page=${numPage}`;
+
 
   if (terms === undefined && location === undefined) {
     return url;
@@ -59,12 +69,12 @@ const setURL = (terms, location, isFullTime) => {
     url += "&full_time=on";
   }
   return url;
+
 };
 
-/*
-* Show error messages 
-* -----------------------------------------------------------
-*/
+
+// Show error messages 
+// -----------------------------------------------------------
 
 const showMessage = (text) => {
   divCardsList.innerHTML = "";
@@ -75,18 +85,17 @@ const showMessage = (text) => {
   paragraph.appendChild(message);
 };
 
-/*
-* Fetch jobs offers from API
-* -----------------------------------------------------------
-*/
+// Fetch jobs offers from API
+// -----------------------------------------------------------
 
 const getJobs = async (terms, location, isFullTime) => {
+  let jobs = [];
   url = setURL(terms, location, isFullTime);
-
+  //console.log(url);
   try {
     const response = await fetch(url);
     jobs = await response.json();
-    return jobs;
+    renderCards(jobs);
   } catch (error) {
     showMessage(
       "Lo sentimos, ha ocurrido un error en el servidor. Prueba más tarde"
@@ -94,25 +103,22 @@ const getJobs = async (terms, location, isFullTime) => {
   }
 };
 
-/*
-* Create "Load more" button
-* -----------------------------------------------------------
-*/
+
+// Create "Load more" button
+// -----------------------------------------------------------
 
 const showLoadMoreBtn = () => {
   const loadMoreBtn = document.createElement("button");
   loadMoreBtn.className = "btn-primary js-loadMoreBtn";
   const textBtn = document.createTextNode("Load more");
   loadMoreBtn.appendChild(textBtn);
-  // loadMoreBtn.addEventListener('click', loadMoreCards);
   loadMoreBtn.addEventListener("click", handleLoad);
   divCardsList.after(loadMoreBtn);
 };
 
-/*
-* Calculate time since date of publication of job offer
-* -----------------------------------------------------------                    
-*/
+
+// Calculate time since date of publication of job offer
+// -----------------------------------------------------------                    
 
 const calculateTime = (dateCreated) => {
   const createdAtDate = new Date(dateCreated);
@@ -135,12 +141,11 @@ const calculateTime = (dateCreated) => {
   return `${months}m`;
 };
 
-/*
-* Render the list of job offers
-* -----------------------------------------------------------
-*/
 
-const renderCards = () => {
+// Render the list of job offers
+// -----------------------------------------------------------
+
+const renderCards = (jobs) => {
   if (numPage === 1) {
     divCardsList.innerHTML = '';
   }
@@ -171,48 +176,83 @@ const renderCards = () => {
   }
 };
 
-/*
-* handleSearch()  
-* -----------------------------------------------------------
-*/
+
+// handleLoad()  
+// -----------------------------------------------------------
 
 const handleLoad = async () => {
-  jobs = await getJobs();
-  renderCards();
+  getJobs();
 };
+
+document.addEventListener("DOMContentLoaded", handleLoad);
+
+
+// handleSearch()  
+// -----------------------------------------------------------
+
+const form = document.querySelector(".js-form");
+const btnSmallSearch = document.querySelector('.js-small-search-btn');
+const btnModalSearch = document.querySelector('.js-modal-search-btn');
 
 const handleSearch = async (e) => {
   // eslint-disable-next-line no-unused-expressions
   e.preventDefault();
 
-  const terms = form.elements.terms.value;
-  const location = form.elements.location.value;
-  const isFullTime = form.elements.jobType.checked;
-
-  jobs = await getJobs(terms, location, isFullTime);
-  renderCards();
-};
-
-const handleModalSearch = async (e) => {
-  // eslint-disable-next-line no-unused-expressions
-  e.preventDefault();
-  hideModal();
+  let terms = '';
+  let location = '';
+  let isFullTime = '';
+  numPage = 1;
 
   const locationModalInput = document.querySelector(".js-modal-location");
   const typeModalCheckbox = document.querySelector(".js-modal-fullTime");
 
-  const terms = termsInputField.value;
-  const location = locationModalInput.value;
-  const isFullTime = typeModalCheckbox.checked;
+  if (e.target === form) {
 
-  jobs = await getJobs(terms, location, isFullTime);
-  renderCards();
+    terms = form.elements.terms.value;
+    location = form.elements.location.value;
+    isFullTime = form.elements.jobType.checked;
+
+  } else if (e.target === btnSmallSearch) {
+
+    terms = termsInputField.value;
+
+  } else if (e.target === btnModalSearch) {
+
+    hideModal();
+    terms = termsInputField.value;
+    location = locationModalInput.value;
+    isFullTime = typeModalCheckbox.checked;
+
+  }
+
+  getJobs(terms, location, isFullTime);
+
+  if (e.target === form) {
+
+    form.elements.terms.value = '';
+    form.elements.location.value = '';
+    form.elements.jobType.checked = false;
+
+  } else if (e.target === btnSmallSearch) {
+
+    termsInputField.value = '';
+
+  } else if (e.target === btnModalSearch) {
+
+    termsInputField.value = '';
+    locationModalInput.value = '';
+    typeModalCheckbox.checked = false;
+
+  }
 };
 
-/*
-* changePlaceholderText() y changeSearchBox() 
-* -----------------------------------------------------------
-*/
+form.addEventListener('submit', handleSearch);
+btnModalSearch.addEventListener('click', handleSearch);
+btnSmallSearch.addEventListener('click', handleSearch);
+
+
+// changePlaceholderText()
+// -----------------------------------------------------------
 
 const mediaQuery = window.matchMedia('(max-width: 850px)');
 
@@ -231,14 +271,3 @@ const changePlaceholderText = (query) => {
 
 changePlaceholderText(mediaQuery);
 mediaQuery.addListener(changePlaceholderText);
-
-btnOpenModal.addEventListener('click', showModal);
-document.addEventListener("DOMContentLoaded", handleLoad);
-form.addEventListener('submit', handleSearch);
-toggleSwitch.addEventListener('change', switchTheme);
-btnModalSearch.addEventListener('click', handleModalSearch);
-window.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    hideModal();
-  }
-});

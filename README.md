@@ -1,5 +1,8 @@
 # GitHub Jobs App: Part I
 
+⚠️ IMPORTANT ⚠️: The app uses CORS Anywhere to avoid the CORS errors that GitHub Jobs API throw when you try to get the data. But since February 1st. 2021, the user have to visit  [cors-anywhere.herokuapp.com](https://cors-anywhere.herokuapp.com) to temporarily unlock the demo for his browser. [More info](https://github.com/Rob--W/cors-anywhere/issues/301)
+
+
 ## General info
 This is a Frontend Mentor coding challenge. It consist in two parts:
 
@@ -17,6 +20,8 @@ This is a Frontend Mentor coding challenge. It consist in two parts:
 - There is a switch that allows choose a "dark mode" or a "light mode".
 - All jobs have to be load in the home page. GitHub Jobs API only let get 50 positions at a time.
 - If the result of a search returns more than 50 positions, a "Load More" button will be shown to render all the data.
+
+![GitHub Api Jobs App Gif](https://github.com/mariam-blanco/create-card-app/blob/master/src/assets/github-api.gif)
 
 
 ## Technologies

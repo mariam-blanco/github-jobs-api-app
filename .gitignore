@@ -1,6 +1,7 @@
 node_modules/
 public/
 package-lock.json
+src/assets/video/
 
 # Avoid accidental Sketch file upload 
 ###############################################
