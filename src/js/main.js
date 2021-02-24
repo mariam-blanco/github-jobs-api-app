@@ -79,10 +79,11 @@ const setURL = (terms, location, isFullTime) => {
 const showMessage = (text) => {
   divCardsList.innerHTML = "";
   const paragraph = document.createElement("p");
-  const message = document.createTextNode(text);
   paragraph.classList.add("message");
+  //const message = document.createTextNode(text);
+
   divCardsList.appendChild(paragraph);
-  paragraph.appendChild(message);
+  paragraph.innerHTML = text;
 };
 
 // Fetch jobs offers from API
@@ -94,12 +95,22 @@ const getJobs = async (terms, location, isFullTime) => {
   //console.log(url);
   try {
     const response = await fetch(url);
+    if (response.status === 403) {
+      throw new Error(
+        `
+        failed to load resource. 
+        <ol>
+          <li>Go to <a href="https://cors-anywhere.herokuapp.com/corsdemo">cors-anywhere.herokuapp.com</a></li>
+          <li>Click the button to unlock CORS Anywhere for your browser</li>
+          <li>Come back to this page and reload to get the jobs list.</li>
+        </ol> 
+        `
+      );
+    }
     jobs = await response.json();
     renderCards(jobs);
   } catch (error) {
-    showMessage(
-      "Lo sentimos, ha ocurrido un error en el servidor. Prueba más tarde"
-    );
+    showMessage(error);
   }
 };
 
