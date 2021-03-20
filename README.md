@@ -1,8 +1,5 @@
 # GitHub Jobs App: Part I
 
-⚠️ IMPORTANT ⚠️: The app uses CORS Anywhere to avoid the CORS errors that GitHub Jobs API throw when you try to get the data. But since February 1st. 2021, the user have to visit  [cors-anywhere.herokuapp.com](https://cors-anywhere.herokuapp.com) to temporarily unlock the demo for his browser. [More info](https://github.com/Rob--W/cors-anywhere/issues/301)
-
-
 ## General info
 This is a Frontend Mentor coding challenge. It consist in two parts:
 
