@@ -24,4 +24,5 @@ This is a Frontend Mentor coding challenge. It consist in two parts:
 ## Technologies
 - JavaScript
 - HTML
+- CSS
 - SASS
