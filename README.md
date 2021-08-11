@@ -1,5 +1,7 @@
 # GitHub Jobs App: Part I
 
+⚠️ Note: GitHub Jobs is deprecated! It will shut down entirely on August 19, 2021. ⚠️
+
 ## General info
 This is a Frontend Mentor coding challenge. It consist in two parts:
 
